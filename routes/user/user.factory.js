@@ -13,7 +13,7 @@ module.exports = ({
             "data": null
         }
         try{
-            var user = await User.findOne({email : req.body.email})
+            var user = await User.findOne({phone : req.body.phone})
             if (user) {
                 return_response["message"] = "User already exist!";
                 return_response["status"] = 400;
@@ -42,7 +42,7 @@ module.exports = ({
     async function loginUser(req,res){
         var return_response = {"status": null, "message": null, "data": null}
         try {
-            const user = await User.findOne({email:req.body.email});
+            const user = await User.findOne({phone : req.body.phone});
             if(user) {
                 const isMatch = await bcrypt.compare(req.body.password, user.password)
                 if(!isMatch){
@@ -50,7 +50,7 @@ module.exports = ({
                     return_response["message"] = "Invalid login details";
                 }else {
                     const token = jwt.sign({
-                        email:user.email,
+                        phone:user.phone,
                         id:user._id
                     }, "dfgjgfr76rur",{
                         expiresIn: "24h"
