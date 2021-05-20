@@ -5,7 +5,6 @@ module.exports = ({
 }) => {
 
     //=====================register user api=============================================
-    //This api will get users data like name,email,password and save into the users collection
      async function registerUser(req, res) {
        var return_response = {
             "status": null,
@@ -37,8 +36,6 @@ module.exports = ({
     }
 
     //=================login user api====================================================
-    //This api will get email and password in req.body and match it with the data stored in
-    //the user DB. if matched then generate token and logged in
     async function loginUser(req,res){
         var return_response = {"status": null, "message": null, "data": null}
         try {
